@@ -11,6 +11,8 @@ score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
 
+let currentScore = 0;
+
 btnRoll.addEventListener('click', function(){
     const dice = Math.trunc(Math.random() * 6) + 1;
 
@@ -19,4 +21,10 @@ btnRoll.addEventListener('click', function(){
     diceEl.src = `dice-${dice}.png`;
 
     console.log(dice);
+
+    if(dice !== 1){
+        currentScore += dice;
+    }else{
+
+    }
 })

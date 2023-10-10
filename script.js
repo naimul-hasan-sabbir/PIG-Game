@@ -40,3 +40,9 @@ btnRoll.addEventListener('click', function(){
         player1El.classList.toggle('player--active')
     }
 })
+
+btnHold.addEventListener('click', function(){
+    scores[activePlayer] += currentScore
+
+    btnHold.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer]
+})

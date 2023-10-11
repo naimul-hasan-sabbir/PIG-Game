@@ -1,7 +1,8 @@
 'use strict';
 
 const player0El = document.querySelector('.player--0')
-const player1El = document.querySelector('player--1')
+const player1El = document.querySelector('.player--1')
+
 const score0El = document.getElementById('score--0')
 const score1El = document.getElementById('score--1')
 const current0El = document.getElementById('current--0')
@@ -19,6 +20,14 @@ const scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
 
+const switchPlayer = function(){
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    activePlayer = activePlayer === 1 ? 0 : 1;
+    currentScore = 0;
+    player0El.classList.toggle('player--active')
+    player1El.classList.toggle('player--active')
+}
+
 btnRoll.addEventListener('click', function(){
     const dice = Math.trunc(Math.random() * 6) + 1;
 
@@ -33,16 +42,15 @@ btnRoll.addEventListener('click', function(){
         document.getElementById(`current--${activePlayer}`).textContent = currentScore;
         //current0El.textContent = currentScore;
     }else{
-        document.getElementById(`current--${activePlayer}`).textContent = 0;
-        activePlayer = activePlayer === 1 ? 0 : 1;
-        currentScore = 0;
-        player0El.classList.toggle('player--active')
-        player1El.classList.toggle('player--active')
+        switchPlayer();
     }
 })
 
 btnHold.addEventListener('click', function(){
     scores[activePlayer] += currentScore
 
-    btnHold.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer]
+    document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer]
+
+    switchPlayer();
+
 })

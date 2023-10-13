@@ -19,6 +19,7 @@ diceEl.classList.add('hidden');
 const scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
+let playing = true;
 
 const switchPlayer = function(){
     document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -52,7 +53,9 @@ btnHold.addEventListener('click', function(){
     document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer]
 
     if(scores[activePlayer] >= 20){
-        document.querySelector(`player--${activePlayer}`).classList.add('player--winner');
+        playing = false
+        document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+        document.querySelector(`.player--${activePlayer}`).classList.remove('player--active')
     }
 
     switchPlayer();

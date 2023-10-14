@@ -30,6 +30,9 @@ const switchPlayer = function(){
 }
 
 btnRoll.addEventListener('click', function(){
+    if(playing){
+
+    
     const dice = Math.trunc(Math.random() * 6) + 1;
 
     diceEl.classList.remove('hidden');
@@ -45,19 +48,23 @@ btnRoll.addEventListener('click', function(){
     }else{
         switchPlayer();
     }
+}
 })
 
 btnHold.addEventListener('click', function(){
+    if(playing){
+
     scores[activePlayer] += currentScore
 
     document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer]
 
     if(scores[activePlayer] >= 20){
+        diceEl.classList.add('hidden')
         playing = false
         document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
         document.querySelector(`.player--${activePlayer}`).classList.remove('player--active')
     }
 
     switchPlayer();
-
+    }
 })

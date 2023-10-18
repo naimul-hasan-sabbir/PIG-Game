@@ -82,4 +82,5 @@ btnNew.addEventListener('click', function(){
 
     player0El.classList.remove('player--active')
     player1El.classList.remove('player--active')
+    
 })
